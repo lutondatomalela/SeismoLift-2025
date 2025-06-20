@@ -16,7 +16,17 @@ SeismoLift/
         
 ├──── 0_MAIN/SeismoLift.py  (python script)  
 ├──── 1_IN/Zonas_Sismicas_PT.xlsx  (database)   
-├──── 2_OUT/SeismoLift_Report.docx  (gen report)       
+├──── 2_OUT/SeismoLift_Report.docx  (gen report)    
+
+
+## 📥 Official Seismic Data
+
+The file `Zonas_Sismicas_PT.xlsx` contains official seismic classification values for Portuguese municipalities, based on:
+
+📚 **NP EN 1998-1:2009 – Eurocode 8**  
+(Anexo Nacional - ANEXO NA.I)
+
+This dataset is publicly referenceable and included for educational and engineering use.
 
 
 ## ⚙️ Usage
@@ -32,12 +42,12 @@ python SeismoLift.py
 
 A .docx report will be saved automatically in the 2_OUT/ folder.
 
-📄 License
+📄 License                          
 Distributed under the MIT License. See the LICENSE file for details.
 
-🤝 Contributing
+🤝 Contributing                        
 Pull requests, bug reports, and feature suggestions are welcome!
 
-📬 Author
+📬 Author                   
 Created by Engº Lutonda Tomalela —
 Bringing seismic clarity to vertical transport.
