@@ -3,7 +3,7 @@
 **SeismoLift** is an open-source tool developed to determine the **seismic categories of elevators** in accordance with **NP EN 1998-1:2009** and **EN 81-77** standards.  
 Designed specifically for Portugal, it helps engineers, architects, and safety specialists evaluate location-based seismic zones efficiently and reliably.
 
-## 🔍 Features
+## Features
 
 - Region-specific lookup for **Portugal Continental**, **Madeira**, and **Azores**
 - Handles municipalities (concelhos) with duplicate names across regions
@@ -11,7 +11,7 @@ Designed specifically for Portugal, it helps engineers, architects, and safety s
 - Clean CLI interface and modular code
 - Generates reports to assist in compliance and documentation
 
-## 🗂 Project Structure
+## Project Structure
 SeismoLift/ 
         
 ├──── 0_MAIN/SeismoLift.py  (python script)  
@@ -19,17 +19,17 @@ SeismoLift/
 ├──── 2_OUT/SeismoLift_Report.docx  (gen report)    
 
 
-## 📥 Official Seismic Data
+## Official seismic data
 
 The file `Zonas_Sismicas_PT.xlsx` contains official seismic classification values for Portuguese municipalities, based on:
 
-📚 **NP EN 1998-1:2009 – Eurocode 8**  
+**NP EN 1998-1:2009 – Eurocode 8**  
 (Anexo Nacional - ANEXO NA.I)
 
 This dataset is publicly referenceable and included for educational and engineering use.
 
 
-## ⚙️ Usage
+## Usage
 
 1. Clone this repository and open a terminal in the project root.
 2. Make sure you have Python 3.7+ and install the dependencies:
@@ -42,12 +42,11 @@ python SeismoLift.py
 
 A .docx report will be saved automatically in the 2_OUT/ folder.
 
-📄 License                          
+License                          
 Distributed under the MIT License. See the LICENSE file for details.
 
-🤝 Contributing                        
+Contributing                        
 Pull requests, bug reports, and feature suggestions are welcome!
 
-📬 Author                   
-Created by Engº Lutonda Tomalela —
-Bringing seismic clarity to vertical transport.
+Author                   
+Created by Engº Lutonda Tomalela
