@@ -1,6 +1,6 @@
 # SeismoLift
 
-**SeismoLift** is an open-source tool developed to determine the **seismic categories of elevators** in accordance with **NP EN 1998-1:2009** and **EN 81-77** standards.  
+**SeismoLift** is an open-source tool developed to determine the **seismic categories of elevators** in accordance with **EN 81-77:2022 + NP EN 1998-1:2010** standards.  
 Designed specifically for Portugal, it helps engineers, architects, and safety specialists evaluate location-based seismic zones efficiently and reliably.
 
 ## Features
