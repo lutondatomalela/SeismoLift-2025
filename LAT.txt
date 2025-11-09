@@ -2,7 +2,7 @@
 Tool: Automated Seismic lift categories calculator 
 _____________________________________________________________  
 Project Name: SeismoLift 
-Description: This tool calculates the seismic category of elevators in accordance with NP EN 1998-1:2009 and EN 81-77 standards.  
+Description: This tool calculates the seismic category of elevators in accordance with EN 81-77:2022 + NP EN 1998-1:2010 standards.  
 Author: Engº Lutonda Tomalela  
 Date: May 2025  
 Version: v1.0  
