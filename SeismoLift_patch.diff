@@ -1,0 +1,70 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Oct  26 23:50:25 2025
+
+@author: luton
+"""
+
+--- SeismoLift_original.py
++++ SeismoLift_corrigido.py
+@@ -188,7 +188,15 @@
+     def aceleracao_superficie(gamma_l, agR_1, agR_2, local):
+-        agR = agR_2
+-        ag = gamma_l * agR # [-]
+-        alfa = ag / 9.81 # [-]
+-        
+-        return ag, alfa, agR
++        # Correção normativa: Continente/Madeira → Tipo 1 ; Açores → Tipo 2
++        if agR_1 is None and agR_2 is None:
++            agR = None
++        elif local == "Arquipélago dos Açores":
++            agR = agR_2
++        else:
++            agR = agR_1
++        ag = gamma_l * agR  # [-]
++        alfa = ag / 9.81    # [-]
++        return ag, alfa, agR
+
+@@ -289,6 +297,16 @@
+-    def alturas():
+-        
+-        H = input_altura("\nNota 1: Altura total do edifício (fundação/topo de cave rígida → cobertura).")
+-        z = input_altura("\nNota 2: Altura do elemento não estrutural acima do nível de aplicação da ação sísmica.")
+-        
+-        return H, z
++    def alturas():
++        H = input_altura("\nNota 1: Altura total do edifício (fundação/topo de cave rígida → cobertura).")
++        while True:
++            z = input_altura("\nNota 2: Altura do elemento não estrutural acima do nível de aplicação da ação sísmica (z ≤ H).")
++            if z <= H:
++                break
++            print("⚠️ z não pode ser superior a H. Tente novamente.")
++        return H, z
+
+@@ -324,7 +342,9 @@
+-        Sa = alfa * S * (3 * (1 + z/H) 
+-                        / (1 + (1 - Ta / T1)**2) - 0.5) # [-]
++        Sa = alfa * S * (3 * (1 + z/H) / (1 + (1 - Ta / T1)**2) - 0.5)  # [-]
++        # Condição da EN 81-77 (remissão EC8): Sa ≥ α·S
++        Sa = max(Sa, alfa * S)
+         ad = Sa * (gamma_a / qa) * 9.81 # [m/s2]
+
+@@ -367,9 +387,9 @@
+-        hdr_cells[0].text = 'Aceleração de projeto (ad) [m/s²]                        (EN 81-77:2018 (B.1))'
+-        hdr_cells[1].text = 'Categoria sísmica do elevador                              (EN 81-77:2018 (B.2))'
++        hdr_cells[0].text = 'Aceleração de projeto (ad) [m/s²]                        (EN 81-77:2022 (B.1))'
++        hdr_cells[1].text = 'Categoria sísmica do elevador                              (EN 81-77:2022 (B.2))'
+         hdr_cells[2].text = 'Nota'
+
+@@ -403,7 +423,12 @@
+-        tbl_pr = tabela._tbl.tblPr or OxmlElement('w:tblPr')
+-        tabela._tbl.tblPr = tbl_pr
++        # Corrigido: evitar FutureWarning / AttributeError
++        tbl_pr = tabela._tbl.tblPr
++        if tbl_pr is None:
++            tbl_pr = OxmlElement('w:tblPr')
++            tabela._tbl.append(tbl_pr)
++
+         tbl_borders = parse_xml(r'''
+         <w:tblBorders %s>
+             <w:top w:val="single" w:sz="6" w:space="0" w:color="000000"/>
