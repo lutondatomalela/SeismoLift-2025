@@ -1,52 +1,119 @@
 # SeismoLift
 
-**SeismoLift** is an open-source tool developed to determine the **seismic categories of elevators** in accordance with **EN 81-77:2022 + NP EN 1998-1:2010** standards.  
-Designed specifically for Portugal, it helps engineers, architects, and safety specialists evaluate location-based seismic zones efficiently and reliably.
+**SeismoLift** é uma ferramenta gráfica para cálculo da aceleração de projecto e da categoria sísmica de ascensores em Portugal, com base no Eurocódigo 8, na EN 81-77 e nas ET 11/2020 para edifícios hospitalares sujeitos a condições sísmicas.
 
-## Features
+Repositório: https://github.com/lutondatomalela/SeismoLift-2025
 
-- Region-specific lookup for **Portugal Continental**, **Madeira**, and **Azores**
-- Handles municipalities (concelhos) with duplicate names across regions
-- Extracts seismic zone types and acceleration values directly from official data
-- Clean CLI interface and modular code
-- Generates reports to assist in compliance and documentation
+## Estado da versão
 
-## Project Structure
-SeismoLift/ 
-        
-├──── 0_MAIN/SeismoLift.py  (python script)  
-├──── 1_IN/Zonas_Sismicas_PT.xlsx  (database)   
-├──── 2_OUT/SeismoLift_Report.docx  (gen report)    
+Versão actual: **v5.0.0-rc2**
 
+Esta versão está preparada para publicação como *release candidate*. O núcleo de cálculo da categoria sísmica está estabilizado, mas recomenda-se validação adicional com casos de referência antes de a marcar como versão final estável.
 
-## Official seismic data
+## Funcionalidades principais
 
-The file `Zonas_Sismicas_PT.xlsx` contains official seismic classification values for Portuguese municipalities, based on:
+- Consulta de zonamento sísmico para Portugal Continental, Madeira e Açores.
+- Avaliação automática das acções sísmicas Tipo 1 e Tipo 2 no Continente.
+- Adopção automática da acção sísmica condicionante.
+- Cálculo da categoria sísmica do ascensor segundo a EN 81-77.
+- Dois modos de cálculo:
+  - `Geral EC8 / EN 81-77`;
+  - `ET 11/2020 - edifício de base fixa`.
+- Classes de importância e tipos de terreno apresentados com descrição sucinta.
+- Exportação de relatórios da categoria sísmica em DOCX e PDF.
+- Exportação dos dados de cálculo em XLSX, com metadados.
+- Aba de espetros de resposta com:
+  - visualização simultânea dos espetros Tipo 1 e Tipo 2, quando aplicável;
+  - marcação de `TB`, `TC`, `TD`, `T1` e `Ta`;
+  - unidade em `m/s²` ou `g`;
+  - cálculo automático de `T1 = Ct·H^0,75` ou introdução manual;
+  - exportação de espetros em XLSX, CSV e PNG;
+  - relatório dos espetros em DOCX e PDF.
+- Interface gráfica redimensionável, com painéis ajustáveis e scroll nas áreas principais.
+- Ícone próprio com fundo transparente.
 
-**NP EN 1998-1:2009 – Eurocode 8**  
-(Anexo Nacional - ANEXO NA.I)
+## Estrutura da pasta
 
-This dataset is publicly referenceable and included for educational and engineering use.
+```text
+SeismoLift/
+├── SeismoLift.py
+├── Zonas_Sismicas_PT.xlsx
+├── assets/
+│   ├── seismolift_icon.ico
+│   ├── seismolift_icon_32.png
+│   └── seismolift_icon_128.png
+├── requirements.txt
+├── requirements-build.txt
+├── build_windows.bat
+├── VERSION.txt
+├── CHANGELOG.md
+├── LICENSE.md
+├── .gitignore
+└── README.md
+```
 
+## Instalação para correr com Python
 
-## Usage
+Requer Python 3.10 ou superior.
 
-1. Clone this repository and open a terminal in the project root.
-2. Make sure you have Python 3.7+ and install the dependencies:
-
-- Run the script inside the 0_MAIN directory:
 ```bash
 pip install -r requirements.txt
 python SeismoLift.py
 ```
 
-A .docx report will be saved automatically in the 2_OUT/ folder.
+## Gerar executável Windows
 
-License                          
-Distributed under the MIT License. See the LICENSE file for details.
+Para gerar uma pasta distribuível com o executável:
 
-Contributing                        
-Pull requests, bug reports, and feature suggestions are welcome!
+```bat
+build_windows.bat
+```
 
-Author                   
-Created by Engº Lutonda Tomalela
+O resultado será criado em:
+
+```text
+dist/SeismoLift/SeismoLift.exe
+```
+
+Para gerar um executável em ficheiro único:
+
+```bat
+build_windows.bat onefile
+```
+
+O resultado será criado em:
+
+```text
+dist/SeismoLift.exe
+```
+
+Para distribuição inicial, recomenda-se usar o modo de pasta (`dist/SeismoLift/`), por ser mais robusto com Tkinter, Matplotlib e ficheiros de dados externos.
+
+## Base sísmica
+
+A base `Zonas_Sismicas_PT.xlsx` é carregada automaticamente e não é apresentada na interface principal. A referência normativa ao zonamento sísmico é mantida nos relatórios e na documentação.
+
+Em modo Python, manter estes elementos na mesma pasta:
+
+```text
+SeismoLift.py
+Zonas_Sismicas_PT.xlsx
+assets/
+```
+
+No executável `onefile`, a base é embebida pelo PyInstaller através do script `build_windows.bat`. A selecção manual só é solicitada se a base não for encontrada ou se a instalação estiver incompleta.
+
+## Notas técnicas
+
+- Para Portugal Continental, o programa avalia a acção sísmica Tipo 1 e Tipo 2 e retém a condicionante.
+- O modo `ET 11/2020 - edifício de base fixa` é uma formulação prática para edifícios de base fixa.
+- A determinação da categoria sísmica não substitui a verificação completa dos requisitos construtivos e funcionais da EN 81-77.
+- Os relatórios incluem metadados com autoria de `Engº Lutonda Tomalela`.
+
+## Autor
+
+**Engº Lutonda Tomalela**
+
+## Licença
+
+MIT License. Ver `LICENSE.md`.
