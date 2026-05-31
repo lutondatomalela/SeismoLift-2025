@@ -6,9 +6,7 @@ Repositório: https://github.com/lutondatomalela/SeismoLift-2025
 
 ## Estado da versão
 
-Versão actual: **v5.0.0-rc2**
-
-Esta versão está preparada para publicação como *release candidate*. O núcleo de cálculo da categoria sísmica está estabilizado, mas recomenda-se validação adicional com casos de referência antes de a marcar como versão final estável.
+Versão actual: **v5.0.0-rc3**
 
 ## Funcionalidades principais
 
@@ -74,8 +72,6 @@ SeismoLift.py
 Zonas_Sismicas_PT.xlsx
 assets/
 ```
-
-No executável `onefile`, a base é embebida pelo PyInstaller através do script `build_windows.bat`. A selecção manual só é solicitada se a base não for encontrada ou se a instalação estiver incompleta.
 
 ## Notas técnicas
 
