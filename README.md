@@ -61,33 +61,7 @@ pip install -r requirements.txt
 python SeismoLift.py
 ```
 
-## Gerar executável Windows
-
-Para gerar uma pasta distribuível com o executável:
-
-```bat
-build_windows.bat
-```
-
-O resultado será criado em:
-
-```text
-dist/SeismoLift/SeismoLift.exe
-```
-
-Para gerar um executável em ficheiro único:
-
-```bat
-build_windows.bat onefile
-```
-
-O resultado será criado em:
-
-```text
-dist/SeismoLift.exe
-```
-
-Para distribuição inicial, recomenda-se usar o modo de pasta (`dist/SeismoLift/`), por ser mais robusto com Tkinter, Matplotlib e ficheiros de dados externos.
+## Com executável Windows
 
 ## Base sísmica
 
